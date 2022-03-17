@@ -7,6 +7,49 @@ use App;
 
 class pageController extends Controller
 {
+    
+    public function crearFrascos(Request $request){
+        //return $request -> all();}
+        
+        $request->validate([
+
+            'Id'=> 'required',
+            'Precio'=> 'required',
+            'Color'=> 'required',
+            'ML'=> 'required',
+            'Descripcion'=> 'required'
+        ]);
+
+        $frasco = new App\models\frasco; 
+        $frasco->Id = $request->Id;
+        $frasco->Precio = $request->Precio;
+        $frasco->Color = $request->Color;
+        $frasco->ML = $request->ML;
+        $frasco->Descripcion = $request->Descripcion;
+
+        $frasco->save();
+        return back()->with('mensaje','Frasco agregado con exito!');
+
+    }
+
+    public function editar($id){
+        $frasco=App\models\frasco::findOrFail($id);
+        return view('frascos.editar',compact('frasco'));
+    }
+    
+    public function update(Request $request,$id){
+        $frasco=App\models\frasco::findOrFail($id);
+        $frasco->Id=$request->Id;
+        $frasco->Precio=$request->Precio;
+        $frasco->Color=$request->Color;
+        $frasco->ML=$request->ML;
+        $frasco->Descripcion=$request->Descripcion;
+
+        $frasco->save();
+
+        return back()->with('mensaje','frasco actualizado'); 
+
+    }
 
     public function detalle($id){
         $frasco=App\models\frasco::findOrFail($id);
@@ -16,7 +59,7 @@ class pageController extends Controller
         $frascos=App\models\frasco::all();
         return view('welcome',compact('frascos'));
     }
-    public function inicio(){
+    public function cattleya(){
         return view('cattleya');
     }
     public function perfumes(){

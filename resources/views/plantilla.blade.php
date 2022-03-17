@@ -12,6 +12,7 @@
   </head>
   <body>
       <div class="container">
+          <a href="{{route('index')}}" class="btn btn-primary">inicio</a>
           <a href="{{route('cattleya')}}" class="btn btn-primary">cattleya</a>
           <a href="{{route('perfumes')}}" class="btn btn-primary">perfumes</a>
           <a href="{{route('nosotros')}}" class="btn btn-primary">nosotros</a>

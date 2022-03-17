@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('frascos', function (Blueprint $table) {
-            $table->increments('Id');
+            $table->increments('Id')->unique();
             $table->integer('Precio');
             $table->String('Color');
             $table->integer('ML');

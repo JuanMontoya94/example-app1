@@ -7,6 +7,12 @@ use App;
 
 class pageController extends Controller
 {
+    public function delete($id){
+        $frasco=App\models\Frasco::findOrFail($id);
+        $frasco->delete();
+
+        return back()->with('mensaje','Frasco eliminado con exito!');
+    }
     
     public function crearFrascos(Request $request){
         //return $request -> all();}
@@ -20,7 +26,7 @@ class pageController extends Controller
             'Descripcion'=> 'required'
         ]);
 
-        $frasco = new App\models\frasco; 
+        $frasco = new App\models\Frasco; 
         $frasco->Id = $request->Id;
         $frasco->Precio = $request->Precio;
         $frasco->Color = $request->Color;
@@ -33,12 +39,12 @@ class pageController extends Controller
     }
 
     public function editar($id){
-        $frasco=App\models\frasco::findOrFail($id);
+        $frasco=App\models\Frasco::findOrFail($id);
         return view('frascos.editar',compact('frasco'));
     }
     
     public function update(Request $request,$id){
-        $frasco=App\models\frasco::findOrFail($id);
+        $frasco=App\models\Frasco::findOrFail($id);
         $frasco->Id=$request->Id;
         $frasco->Precio=$request->Precio;
         $frasco->Color=$request->Color;
@@ -56,7 +62,7 @@ class pageController extends Controller
         return view('frascos.detalle',compact('frasco'));
     }
     public function index(){
-        $frascos=App\models\frasco::all();
+        $frascos=App\models\frasco::simplePaginate(5);
         return view('welcome',compact('frascos'));
     }
     public function cattleya(){

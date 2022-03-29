@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class frasco extends Model
 {
+    protected $primaryKey = 'Id';
     public $timestamps = false;
     use HasFactory;
 }

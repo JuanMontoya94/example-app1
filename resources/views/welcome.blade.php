@@ -1,3 +1,9 @@
+
+@extends('plantilla')
+
+@section('seccion')
+<h1>Bienvenido al catalogo de perfumes</h1>
+
 <!doctype html>
 <html lang="en">
 
@@ -94,12 +100,19 @@
           <td>{{$item->Descripcion}}</td>
           <td>
             <a href="{{route('frascos.editar',$item->Id)}}" class="btn btn-warning btn-sm">Editar</a>
+
+            <form action="{{route('frascos.eliminar',$item->Id)}}" method="POST" class="d-inline">
+            @method('DELETE')
+            @csrf
+            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+            </form>
           </td>
         </tr>
         @endforeach
 
       </tbody>
     </table>
+    {{$frascos->links()}}
   </div>
 
   <!-- Optional JavaScript; choose one of the two! -->
@@ -115,3 +128,7 @@
 </body>
 
 </html>
+
+
+
+@endsection

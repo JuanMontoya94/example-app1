@@ -23,4 +23,6 @@ Route::get('/editar/{id}', 'App\Http\Controllers\pageController@editar')->name('
 
 Route::put('/editar/{id}','App\Http\Controllers\pageController@update')->name('frascos.update');
 
-route::post('/','App\Http\Controllers\pageController@crearFrascos') ->name('frascos.crear');
+Route::post('/','App\Http\Controllers\pageController@crearFrascos') ->name('frascos.crear');
+
+Route::delete('/eliminar/{id}','App\Http\Controllers\pageController@delete')->name('frascos.eliminar');
